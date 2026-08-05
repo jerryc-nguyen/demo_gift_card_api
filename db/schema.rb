@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_08_05_032041) do
+ActiveRecord::Schema[7.1].define(version: 2026_08_05_043615) do
   create_table "brands", force: :cascade do |t|
     t.string "name", null: false
     t.string "website"
@@ -18,6 +18,15 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_05_032041) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.string "api_key"
+    t.decimal "payout_rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["api_key"], name: "index_clients_on_api_key", unique: true
   end
 
   create_table "products", force: :cascade do |t|

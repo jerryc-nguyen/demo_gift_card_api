@@ -18,6 +18,8 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :clients
+
       end
     end
   end
