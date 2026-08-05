@@ -4,15 +4,21 @@ module Api
       class GiftCardsController < BaseController
         def create
           product = current_client.products.status_active.find(card_params[:product_id])
-          card = GiftCard.new(
-            product: product,
-            client: current_client,
-            pin: card_params[:pin],
-            purchase_details: card_params[:purchase_details],
-            activation_number: rand(100000..999999)
-          )
-          card.save!
-          render_success(card_response(card))
+          begin
+            @card = GiftCard.new(
+              product: product,
+              client: current_client,
+              pin: card_params[:pin],
+              purchase_details: card_params[:purchase_details],
+              activation_number: rand(100000..999999)
+            )
+            @card.save!
+            render_success(card_response(@card))
+          rescue ActiveRecord::RecordNotUnique => e
+            retry
+          rescue ActiveRecord::RecordInvalid => e
+            render_error(403, 'RecordInvalid', @card.errors.full_messages, status: :unprocessable_entity)
+          end
         end
 
         def cancel
