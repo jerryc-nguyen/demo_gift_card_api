@@ -31,6 +31,12 @@ Rails.application.routes.draw do
       namespace :clients do
         resources :products, only: [:index]
         resources :brands, only: [:index]
+
+        resources :gift_cards, only: [:create] do
+          member do
+            patch :cancel
+          end
+        end
       end
     end
   end
