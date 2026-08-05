@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_08_05_030814) do
+ActiveRecord::Schema[7.1].define(version: 2026_08_05_032041) do
   create_table "brands", force: :cascade do |t|
     t.string "name", null: false
     t.string "website"
@@ -18,6 +18,15 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_05_030814) do
     t.string "status", default: "active", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "brand_id", null: false
+    t.string "name"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_products_on_brand_id"
   end
 
   create_table "users", force: :cascade do |t|

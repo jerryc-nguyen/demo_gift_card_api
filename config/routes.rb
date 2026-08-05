@@ -7,6 +7,7 @@ Rails.application.routes.draw do
         post "auth/login", to: "auth#login"
 
         resources :brands, only: [:create]
+        resources :products, only: [:create, :update, :destroy]
 
       end
     end
