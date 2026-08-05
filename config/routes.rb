@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :admin do
         post "auth/login", to: "auth#login"
+
+        resources :brands, only: [:create]
+
       end
     end
   end
