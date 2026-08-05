@@ -19,6 +19,12 @@ Rails.application.routes.draw do
         end
 
         resources :clients
+        resources :client_products, only: [] do
+          collection do
+            post :bulk_assign
+            delete :bulk_remove
+          end
+        end
 
       end
     end
