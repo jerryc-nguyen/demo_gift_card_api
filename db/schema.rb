@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_08_05_061818) do
+ActiveRecord::Schema[7.1].define(version: 2026_08_05_105110) do
   create_table "brands", force: :cascade do |t|
     t.string "name", null: false
     t.string "website"
@@ -46,6 +46,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_05_061818) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "searchable_text"
     t.index ["brand_id"], name: "index_products_on_brand_id"
   end
 
