@@ -2,6 +2,7 @@ module Api
   module V1
     module Admin
       class BrandsController < ApplicationController
+        before_action :set_brand, only: [:update_status]
 
         def create
           brand = Brand.new(brand_params)
@@ -12,7 +13,17 @@ module Api
           end
         end
 
+        def update_status
+          status = params[:status] == 'active' ? :active : :inactive
+          @brand.update!(status: status)
+          render_success(@brand)
+        end
+
         private
+
+        def set_brand
+          @brand = Brand.find(params[:id])
+        end
 
         def brand_params
           params.permit(:name, :website, :logo_url)

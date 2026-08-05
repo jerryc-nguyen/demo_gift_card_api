@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_05_032041) do
     t.string "name", null: false
     t.string "website"
     t.string "logo_url"
-    t.string "status", default: "active", null: false
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_05_032041) do
     t.integer "brand_id", null: false
     t.string "name"
     t.decimal "price"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_products_on_brand_id"

@@ -2,10 +2,11 @@ module Api
   module V1
     module Admin
       class ProductsController < ApplicationController
-        before_action :set_product, only: [:update, :destroy]
+        before_action :set_brand
+        before_action :set_product, only: [:update, :destroy, :update_status]
 
         def create
-          product = Product.new(product_params)
+          product = @brand.products.new(product_params)
           if product.save
             render_success(product, status: :created)
           else
@@ -21,6 +22,12 @@ module Api
           end
         end
 
+        def update_status
+          status = params[:status] == 'active' ? :active : :inactive
+          @product.update!(status: status)
+          render_success(@product)
+        end
+
         def destroy
           if @product.destroy
             render_success({ message: "Product deleted successfully" })
@@ -31,8 +38,12 @@ module Api
 
         private
 
+        def set_brand
+          @brand = Brand.find(params[:brand_id])
+        end
+
         def set_product
-          @product = Product.find(params[:id])
+          @product = @brand.products.find(params[:id])
         end
 
         def product_params

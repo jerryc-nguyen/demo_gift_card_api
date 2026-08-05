@@ -4,7 +4,7 @@ class CreateBrands < ActiveRecord::Migration[7.1]
       t.string :name, null: false
       t.string :website
       t.string :logo_url
-      t.string :status, null: false, default: "active"
+      t.integer :status, default: 0
       t.timestamps
     end
   end

@@ -6,8 +6,17 @@ Rails.application.routes.draw do
       namespace :admin do
         post "auth/login", to: "auth#login"
 
-        resources :brands, only: [:create]
-        resources :products, only: [:create, :update, :destroy]
+        resources :brands, only: [:create] do
+          member do
+            put :update_status
+          end
+        end
+
+        resources :products, only: [:create, :update, :destroy] do
+          member do
+            put :update_status
+          end
+        end
 
       end
     end
