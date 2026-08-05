@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admin
-      class ProductsController < ApplicationController
+      class ProductsController < BaseController
         before_action :set_brand
         before_action :set_product, only: [:update, :destroy, :update_status]
 

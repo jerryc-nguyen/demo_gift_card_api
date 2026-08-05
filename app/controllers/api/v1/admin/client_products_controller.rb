@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admin
-      class ClientProductsController < ApplicationController
+      class ClientProductsController < BaseController
         before_action :set_client
 
         def bulk_assign

@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admin
-      class BrandsController < ApplicationController
+      class BrandsController < BaseController
         before_action :set_brand, only: [:update_status]
 
         def create

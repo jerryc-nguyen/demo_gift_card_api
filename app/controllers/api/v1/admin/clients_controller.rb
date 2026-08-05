@@ -1,7 +1,7 @@
 module Api
   module V1
     module Admin
-      class ClientsController < ApplicationController
+      class ClientsController < BaseController
         before_action :set_client, only: [:update, :destroy]
 
         def create
