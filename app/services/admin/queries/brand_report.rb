@@ -20,16 +20,16 @@ module Admin
           brands.id,
           brands.name,
           COUNT(
-            CASE 
-            WHEN gift_cards.status = 0 THEN 1 
+            CASE
+            WHEN gift_cards.status = 0 THEN 1
             END
           ) AS products_sold,
           SUM(
-            CASE 
-            WHEN gift_cards.status = 0 THEN gift_cards.amount 
-            ELSE 0 
+            CASE
+            WHEN gift_cards.status = 0 THEN gift_cards.amount
+            ELSE 0
             END
-          ) AS total_amount              
+          ) AS total_amount
         SQL
       end
 

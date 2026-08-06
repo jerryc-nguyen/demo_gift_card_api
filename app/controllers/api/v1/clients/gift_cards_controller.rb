@@ -22,7 +22,10 @@ module Api
         end
 
         def destroy
-          card = current_client.gift_cards.find_by!(activation_number: params[:id])
+          card = current_client.gift_cards.with_deleted.find_by!(activation_number: params[:id])
+          card.update(
+            status: :cancelled
+          )
           card.destroy
           render_success({ message: "Gift card cancelled successfully" })
         end

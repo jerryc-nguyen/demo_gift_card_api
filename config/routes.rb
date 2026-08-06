@@ -26,8 +26,12 @@ Rails.application.routes.draw do
           end
         end
 
-        get "reports/brands", to: "reports#brands"
-        get "reports/clients", to: "reports#clients"
+        resources :reports, only: [] do
+          collection do
+            get :brands
+            get :clients
+          end
+        end
       end
 
       namespace :clients do
@@ -35,6 +39,13 @@ Rails.application.routes.draw do
         resources :brands, only: [:index]
 
         resources :gift_cards, only: [:create, :destroy]
+
+        resources :reports, only: [] do
+          collection do
+            get :spending
+            get :cancel
+          end
+        end
       end
     end
   end
