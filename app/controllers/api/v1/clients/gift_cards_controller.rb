@@ -17,7 +17,7 @@ module Api
           rescue ActiveRecord::RecordNotUnique => e
             retry
           rescue ActiveRecord::RecordInvalid => e
-            render_error(403, 'RecordInvalid', @card.errors.full_messages, status: :unprocessable_entity)
+            render_error(400, 'RecordInvalid', @card.errors.full_messages, status: :unprocessable_entity)
           end
         end
 
