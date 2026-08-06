@@ -2,8 +2,13 @@ module Api
   module V1
     module Clients
       class GiftCardsController < BaseController
+
+        MAX_RETRIES = 5
+
         def create
+          retries = 0
           product = current_client.products.status_active.find(card_params[:product_id])
+
           begin
             @card = current_client.gift_cards.new(
               product: product,
@@ -15,7 +20,14 @@ module Api
             @card.save!
             render_success(card_response(@card))
           rescue ActiveRecord::RecordNotUnique => e
-            retry
+            retries += 1
+            retry if retries <= MAX_RETRIES
+
+            return render_error(
+              500,
+              "RecordNotUnique",
+              ["Failed to generate unique activation_number after #{MAX_RETRIES} times."]
+            )
           rescue ActiveRecord::RecordInvalid => e
             render_error(400, 'RecordInvalid', @card.errors.full_messages, status: :unprocessable_entity)
           end
