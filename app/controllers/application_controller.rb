@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  include PaginationParams
 
   def render_error(status, code, message, details = {})
     render json: {
