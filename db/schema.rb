@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2026_08_06_041758) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "audits", force: :cascade do |t|
     t.integer "auditable_id"
     t.string "auditable_type"
@@ -43,8 +46,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_06_041758) do
   end
 
   create_table "client_products", force: :cascade do |t|
-    t.integer "client_id", null: false
-    t.integer "product_id", null: false
+    t.bigint "client_id", null: false
+    t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id", "product_id"], name: "index_client_products_on_client_id_and_product_id", unique: true
@@ -62,8 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_06_041758) do
   end
 
   create_table "gift_cards", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "client_id"
+    t.bigint "product_id"
+    t.bigint "client_id"
     t.string "activation_number"
     t.string "pin"
     t.string "purchase_details"
@@ -79,7 +82,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_08_06_041758) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "brand_id", null: false
+    t.bigint "brand_id", null: false
     t.string "name"
     t.decimal "price"
     t.integer "status", default: 0
