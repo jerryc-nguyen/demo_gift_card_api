@@ -3,8 +3,11 @@ module Api
     module Clients
       class ProductsController < BaseController
         def index
-          products = current_client.products.status_active
-          products = products.search(params[:query]) if params[:query].present?
+          products = Clients::Queries::CatalogProducts.new(
+            current_client.products,
+            params
+          ).call
+
           render_success(products)
         end
       end

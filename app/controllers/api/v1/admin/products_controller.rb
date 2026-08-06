@@ -8,7 +8,7 @@ module Api
         def create
           product = @brand.products.new(product_params)
           if product.save
-            render_success(product, status: :created)
+            render_success(product)
           else
             render_error(400, "RecordInvalid", "Invalid product data", product.errors)
           end
