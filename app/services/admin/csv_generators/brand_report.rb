@@ -10,7 +10,7 @@ module Admin
               brand.id,
               brand.name,
               brand.products_sold.to_i,
-              brand.total_sold_amount.to_f.round(2)
+              brand.total_amount.to_f.round(2)
             ]
           end
         end

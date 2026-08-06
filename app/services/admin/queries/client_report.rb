@@ -29,7 +29,7 @@ module Admin
             WHEN gift_cards.status = 0 THEN gift_cards.amount 
             ELSE 0 
             END
-          ) AS total_sold_amount              
+          ) AS total_amount              
         SQL
       end
     end
