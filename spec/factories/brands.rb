@@ -1,0 +1,6 @@
+FactoryBot.define do
+  factory :brand do
+    name { "Test Brand" }
+    status { :active }
+  end
+end
