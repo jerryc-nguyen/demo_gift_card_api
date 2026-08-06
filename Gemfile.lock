@@ -141,6 +141,8 @@ GEM
     nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
+    paranoia (2.6.4)
+      activerecord (>= 5.1, < 7.2)
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
@@ -223,6 +225,7 @@ DEPENDENCIES
   debug
   error_highlight (>= 0.4.0)
   jwt
+  paranoia (~> 2.2)
   puma (>= 5.0)
   rails (~> 7.1.6)
   sqlite3 (>= 1.4)

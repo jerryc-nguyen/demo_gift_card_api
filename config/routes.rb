@@ -34,11 +34,7 @@ Rails.application.routes.draw do
         resources :products, only: [:index]
         resources :brands, only: [:index]
 
-        resources :gift_cards, only: [:create] do
-          member do
-            patch :cancel
-          end
-        end
+        resources :gift_cards, only: [:create, :destroy]
       end
     end
   end

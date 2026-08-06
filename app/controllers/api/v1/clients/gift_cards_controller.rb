@@ -21,10 +21,10 @@ module Api
           end
         end
 
-        def cancel
-          card = current_client.cards.find_by!(activation_number: params[:activation_number])
-          card.update!(status: :cancelled)
-          render_success(card_response(card))
+        def destroy
+          card = current_client.gift_cards.find_by!(activation_number: params[:id])
+          card.destroy
+          render_success({ message: "Gift card cancelled successfully" })
         end
 
         private

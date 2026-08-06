@@ -1,4 +1,6 @@
 class GiftCard < ApplicationRecord
+  acts_as_paranoid
+  
   belongs_to :product
   belongs_to :client
 
