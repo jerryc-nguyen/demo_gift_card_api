@@ -4,8 +4,8 @@ class Product < ApplicationRecord
 
   enum status: { active: 0, inactive: 1 }, _prefix: true
 
+  has_many :gift_cards, dependent: :destroy
   belongs_to :brand
-
   before_save :update_searchable_text
 
   scope :search, ->(query) { where("searchable_text LIKE ?", "%#{query}%") }

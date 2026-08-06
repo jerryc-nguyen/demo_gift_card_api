@@ -7,6 +7,7 @@ class CreateGiftCards < ActiveRecord::Migration[7.1]
       t.string :pin
       t.string :purchase_details
       t.integer :status, default: 0
+      t.decimal :amount
       t.timestamps
     end
 

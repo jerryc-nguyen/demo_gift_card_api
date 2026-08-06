@@ -26,6 +26,8 @@ Rails.application.routes.draw do
           end
         end
 
+        get "reports/brands", to: "reports#brands"
+        get "reports/clients", to: "reports#clients"
       end
 
       namespace :clients do
