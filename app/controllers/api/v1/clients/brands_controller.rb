@@ -10,17 +10,16 @@ module Api
           ).call
 
           brands = brands.page(page).per(per_page)
-          meta = PaginationMeta.from(brands)
 
           render_success({
             records: brands,
-            meta: meta
+            meta: PaginationMeta.from(brands)
           })
         end
 
         def show
           brand = Brand.find(params[:id])
-          
+
           product_filter_params = {
             query: params[:query],
             min_price: params[:min_price],
@@ -34,12 +33,11 @@ module Api
           ).call
 
           products = products.page(page).per(per_page)
-          meta = PaginationMeta.from(products)
 
           render_success({
             brand: brand,
             products: products,
-            meta: meta
+            meta: PaginationMeta.from(products)
           })
         end
       end
