@@ -8,11 +8,10 @@ module Api
           @client = Client.new(client_params)
           
           begin
-            @client.generate_api_key
+            @client.api_key = SecureRandom.hex(32)
             @client.save!
             render_success(@client)
           rescue ActiveRecord::RecordNotUnique => e
-            client.generate_api_key
             retry
           rescue ActiveRecord::RecordInvalid => e
             render_error(403, 'RecordInvalid', @client.errors.full_messages, status: :unprocessable_entity)
