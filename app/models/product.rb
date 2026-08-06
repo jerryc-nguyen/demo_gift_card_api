@@ -1,4 +1,6 @@
 class Product < ApplicationRecord
+  audited
+  
   validates :brand_id, presence: true
   validates :name, presence: true
 

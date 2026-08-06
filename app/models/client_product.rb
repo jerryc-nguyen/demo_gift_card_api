@@ -1,4 +1,5 @@
 class ClientProduct < ApplicationRecord
+  audited
   belongs_to :client
   belongs_to :product
   

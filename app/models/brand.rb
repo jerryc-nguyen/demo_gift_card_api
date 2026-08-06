@@ -1,4 +1,5 @@
 class Brand < ApplicationRecord
+  audited
   validates :name, presence: true
   has_many :products
 
