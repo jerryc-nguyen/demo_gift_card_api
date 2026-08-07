@@ -6,4 +6,7 @@ class GiftCard < ApplicationRecord
   belongs_to :client
 
   enum status: { active: 0, cancelled: 1 }
+
+  validates :amount, presence: true, numericality: { greater_than: 0 }
+  
 end

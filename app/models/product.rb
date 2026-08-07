@@ -3,7 +3,8 @@ class Product < ApplicationRecord
   
   validates :brand_id, presence: true
   validates :name, presence: true
-
+  validates :price, presence: true, numericality: { greater_than: 0 }
+  
   enum status: { active: 0, inactive: 1 }, _prefix: true
 
   has_many :gift_cards, dependent: :destroy
