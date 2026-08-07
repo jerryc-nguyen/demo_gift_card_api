@@ -3,9 +3,8 @@ module Api
     module Clients
       class BrandsController < BaseController
         def index
-          brand_ids = current_client.products.status_active.distinct.pluck(:brand_id)
           brands = ::Clients::Queries::CatalogBrands.new(
-            Brand.where(id: brand_ids),
+            Brand.where(id: client_brand_ids),
             params
           ).call
 
@@ -18,6 +17,10 @@ module Api
         end
 
         def show
+          unless client_brand_ids.include?(params[:id].to_i)
+            return render_error(404, 'not_found', 'Brand Not Found')
+          end
+
           brand = Brand.find(params[:id])
 
           product_filter_params = {
@@ -40,6 +43,7 @@ module Api
             meta: PaginationMeta.from(products)
           })
         end
+
       end
     end
   end

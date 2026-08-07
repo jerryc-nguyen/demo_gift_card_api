@@ -49,6 +49,7 @@ group :development, :test do
   gem "rspec-rails", "~> 6.1"
   gem "factory_bot_rails"
   gem "dotenv-rails"
+  gem "byebug"
 end
 
 group :development do

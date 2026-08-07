@@ -18,6 +18,10 @@ module Api
           end
         end
 
+        def client_brand_ids
+          @client_brand_ids ||= current_client.products.status_active.distinct.pluck(:brand_id)
+        end
+        
       end
     end
   end
