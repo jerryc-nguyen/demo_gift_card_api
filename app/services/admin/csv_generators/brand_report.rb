@@ -1,3 +1,5 @@
+require 'csv'
+
 module Admin
   module CsvGenerators
     class BrandReport

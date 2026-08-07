@@ -1,3 +1,5 @@
+require 'csv'
+
 module Clients
   module CsvGenerators
     class CancelReport < Base
