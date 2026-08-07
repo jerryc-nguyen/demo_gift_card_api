@@ -10,7 +10,7 @@ module Api
           if product.save
             render_success(product)
           else
-            render_error(400, "RecordInvalid", "Invalid product data", product.errors)
+            render_error(422, "validation_failed", "Invalid product data", product.errors)
           end
         end
 
@@ -18,7 +18,7 @@ module Api
           if @product.update(product_params)
             render_success(@product)
           else
-            render_error(400, "RecordInvalid", "Invalid product data", @product.errors)
+            render_error(422, "validation_failed", "Invalid product data", @product.errors)
           end
         end
 
@@ -32,7 +32,7 @@ module Api
           if @product.destroy
             render_success({ message: "Product deleted successfully" })
           else
-            render_error(400, "RecordInvalid", "Invalid product data", @product.errors)
+            render_error(422, "validation_failed", "Invalid product data", @product.errors)
           end
         end
 

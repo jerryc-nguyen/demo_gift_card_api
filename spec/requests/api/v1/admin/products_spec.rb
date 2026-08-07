@@ -18,9 +18,10 @@ RSpec.describe "Api::V1::Admin::Products", type: :request do
     end
 
     context "with invalid parameters" do
-      it "returns a bad request error" do
+      it "returns a validation failed error" do
         post "/api/v1/admin/products", params: { brand_id: brand.id, name: "" }, headers: headers
-        expect(response).to have_http_status(:bad_request)
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(JSON.parse(response.body)["error"]["code"]).to eq("validation_failed")
       end
     end
   end

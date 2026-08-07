@@ -14,7 +14,7 @@ module Api
           rescue ActiveRecord::RecordNotUnique => e
             retry
           rescue ActiveRecord::RecordInvalid => e
-            render_error(400, 'RecordInvalid', @client.errors.full_messages, status: :unprocessable_entity)
+            render_error(422, 'validation_failed', "Validation failed", @client.errors.full_messages)
           end
         end
 
@@ -22,7 +22,7 @@ module Api
           if @client.update(client_params)
             render_success(@client)
           else
-            render_error(400, 'RecordInvalid', @client.errors.full_messages, status: :unprocessable_entity)
+            render_error(422, 'validation_failed', "Validation failed", @client.errors.full_messages)
           end
         end
 
@@ -30,7 +30,7 @@ module Api
           if @client.destroy
             render_success({ message: "Client deleted successfully" })
           else
-            render_error(400, 'RecordInvalid', @client.errors.full_messages, status: :unprocessable_entity)
+            render_error(422, 'validation_failed', "Validation failed", @client.errors.full_messages)
           end
         end
 

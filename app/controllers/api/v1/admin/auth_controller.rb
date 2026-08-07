@@ -11,7 +11,7 @@ module Api
             render_success({ token: token, user: { id: user.id, email: user.email, full_name: user.full_name } }, status: :created)
           else
             log_activity("register", "failed", payload: { email: params[:email] })
-            render_error(400, 'bad_request', "Validation failed", user.errors.full_messages)
+            render_error(422, 'validation_failed', "Validation failed", user.errors.full_messages)
           end
         end
 

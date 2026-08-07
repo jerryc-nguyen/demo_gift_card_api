@@ -29,7 +29,7 @@ module Api
               ["Failed to generate unique activation_number after #{MAX_RETRIES} times."]
             )
           rescue ActiveRecord::RecordInvalid => e
-            render_error(400, 'RecordInvalid', @card.errors.full_messages, status: :unprocessable_entity)
+            render_error(422, 'validation_failed', "Validation failed", @card.errors.full_messages)
           end
         end
 

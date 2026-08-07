@@ -9,7 +9,7 @@ module Api
           if brand.save
             render_success(brand)
           else
-            render_error(400, "RecordInvalid", "Invalid brand data", brand.errors)
+            render_error(422, "validation_failed", "Invalid brand data", brand.errors)
           end
         end
 
