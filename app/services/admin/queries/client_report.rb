@@ -23,7 +23,7 @@ module Admin
             CASE 
             WHEN gift_cards.status = 0 THEN 1 
             END
-          ) AS products_sold,
+          ) AS products_bought,
           SUM(
             CASE 
             WHEN gift_cards.status = 0 THEN gift_cards.amount 

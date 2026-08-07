@@ -5,12 +5,12 @@ module Admin
         clients_data = ::Admin::Queries::ClientReport.new.call
 
         CSV.generate(headers: true) do |csv|
-          csv << ["Client ID", "Client Name", "Products Sold", "Total Bought Amount"]
+          csv << ["Client ID", "Client Name", "Products Bought", "Total Bought Amount"]
           clients_data.each do |client|
             csv << [
               client.id,
               client.name,
-              client.products_sold.to_i,
+              client.products_bought.to_i,
               client.total_amount.to_f.round(2)
             ]
           end

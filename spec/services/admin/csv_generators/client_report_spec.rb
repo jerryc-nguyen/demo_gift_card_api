@@ -10,10 +10,10 @@ RSpec.describe Admin::CsvGenerators::ClientReport do
       csv_string = described_class.new.call
       csv = CSV.parse(csv_string, headers: true)
 
-      expect(csv.headers).to eq(["Client ID", "Client Name", "Products Sold", "Total Bought Amount"])
+      expect(csv.headers).to eq(["Client ID", "Client Name", "Products Bought", "Total Bought Amount"])
       expect(csv.length).to eq(1)
       expect(csv[0]["Client Name"]).to eq('Client A')
-      expect(csv[0]["Products Sold"]).to eq('1')
+      expect(csv[0]["Products Bought"]).to eq('1')
       expect(csv[0]["Total Bought Amount"]).to eq('30.0')
     end
   end

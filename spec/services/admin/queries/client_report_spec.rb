@@ -10,16 +10,16 @@ RSpec.describe Admin::Queries::ClientReport do
   let!(:card4) { create(:gift_card, client: client2, status: :cancelled, amount: 15.0) }
 
   describe '#call' do
-    it 'returns the clients sorted by name with correct products_sold and total_amount' do
+    it 'returns the clients sorted by name with correct products_bought and total_amount' do
       report = described_class.new.call
 
       client_a_data = report.find { |c| c.id == client1.id }
       client_b_data = report.find { |c| c.id == client2.id }
 
-      expect(client_a_data.products_sold).to eq(2)
+      expect(client_a_data.products_bought).to eq(2)
       expect(client_a_data.total_amount.to_f).to eq(50.0)
 
-      expect(client_b_data.products_sold).to eq(0)
+      expect(client_b_data.products_bought).to eq(0)
       expect(client_b_data.total_amount.to_f).to eq(0.0)
     end
   end
